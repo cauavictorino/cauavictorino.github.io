@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Sidebar -->
+  <div class="flex h-screen">
+    <aside class="w-64 bg-gray-900 text-gray-200 flex flex-col">
+      <div class="p-5 text-center text-2xl font-bold border-b border-gray-700">
+        Admin<span class="text-blue-400">LTE</span>
+      </div>
+      <nav class="flex-1 p-4 space-y-2">
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-700">
+          <span class="material-icons mr-3">🏠</span> Dashboard
+        </a>
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-700">
+          📊 <span class="ml-2">Relatórios</span>
+        </a>
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-700">
+          📁 <span class="ml-2">Projetos</span>
+        </a>
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-700">
+          ⚙️ <span class="ml-2">Configurações</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-gray-700">
+        <p class="text-sm">Usuário logado:</p>
+        <p class="font-semibold">Alexander Pierce</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+      <!-- Topbar -->
+      <header class="flex justify-between items-center bg-white p-4 shadow">
+        <h1 class="text-2xl font-semibold">Dashboard</h1>
+        <div class="flex items-center space-x-4">
+          <input type="text" placeholder="Buscar..." class="border rounded px-3 py-1">
+          <div class="flex items-center space-x-2">
+            <img src="https://i.pravatar.cc/40" alt="user" class="w-8 h-8 rounded-full">
+            <span>Alexander Pierce</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Stats -->
+      <section class="p-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-blue-500 text-white p-4 rounded shadow">
+          <h2 class="text-lg font-semibold">CPU Traffic</h2>
+          <p class="text-2xl font-bold">90%</p>
+        </div>
+        <div class="bg-red-500 text-white p-4 rounded shadow">
+          <h2 class="text-lg font-semibold">Likes</h2>
+          <p class="text-2xl font-bold">41,410</p>
+        </div>
+        <div class="bg-green-500 text-white p-4 rounded shadow">
+          <h2 class="text-lg font-semibold">Sales</h2>
+          <p class="text-2xl font-bold">760</p>
+        </div>
+        <div class="bg-yellow-500 text-white p-4 rounded shadow">
+          <h2 class="text-lg font-semibold">New Members</h2>
+          <p class="text-2xl font-bold">2,000</p>
+        </div>
+      </section>
+
+      <!-- Chart Section -->
+      <section class="p-6">
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="font-semibold text-lg mb-3">Monthly Recap Report</h3>
+          <canvas id="salesChart" height="100"></canvas>
+        </div>
+      </section>
+
+      <!-- Progress Bars -->
+      <section class="px-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="font-semibold mb-3">Goal Completion</h3>
+          <div class="mb-3">
+            <p class="text-sm mb-1">Add Products to Cart</p>
+            <div class="w-full bg-gray-200 h-3 rounded">
+              <div class="bg-blue-500 h-3 rounded" style="width:80%"></div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <p class="text-sm mb-1">Complete Purchase</p>
+            <div class="w-full bg-gray-200 h-3 rounded">
+              <div class="bg-green-500 h-3 rounded" style="width:60%"></div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <p class="text-sm mb-1">Visit Premium Page</p>
+            <div class="w-full bg-gray-200 h-3 rounded">
+              <div class="bg-yellow-500 h-3 rounded" style="width:90%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="font-semibold mb-3">Inventory</h3>
+          <p class="text-2xl font-bold text-gray-700">5,200</p>
+          <p class="text-yellow-500 font-semibold">📈 50% increase in 30 days</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Chart.js Script -->
+  <script>
+    const ctx = document.getElementById('salesChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Sales',
+          data: [12000, 15000, 8000, 18000, 20000, 15000, 22000],
+          backgroundColor: 'rgba(59, 130, 246, 0.3)',
+          borderColor: 'rgb(59, 130, 246)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
